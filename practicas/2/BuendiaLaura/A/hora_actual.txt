@@ -1,0 +1,4 @@
+La fecha actual es: 20/08/2018 
+Escriba la nueva fecha: (dd-mm-aa) 
+
+Hora 01_02 p.m

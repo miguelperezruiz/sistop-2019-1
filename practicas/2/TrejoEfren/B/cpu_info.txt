@@ -1,0 +1,24 @@
+Nombre del SO	Microsoft Windows 8.1 Single Language
+Versión	6.3.9600 compilación 9600
+Descripción adicional del SO 	No disponible
+Fabricante del SO	Microsoft Corporation
+Nombre del sistema	LENOVO-PC
+Fabricante del sistema	LENOVO
+Modelo del sistema	20239
+Tipo de sistema	PC basado en x64
+SKU del sistema	LENOVO_MT_20239
+Procesador	AMD E1-2100 APU with Radeon(TM) HD Graphics, 1000 Mhz, 2 procesadores principales, 2 procesadores lógicos
+Versión y fecha de BIOS	LENOVO 82CN23WW(V2.03), 27/09/2013
+Versión de SMBIOS	2.7
+Versión de controladora integrada	1.23
+Modo de BIOS	UEFI
+Fabricante de la placa base	LENOVO
+Modelo de placa base	No disponible
+Nombre de la placa base	Placa base
+Rol de plataforma	Móvil
+Estado de arranque seguro	Activada
+Configuración de PCR7	Enlace no posible
+Directorio de Windows	C:\WINDOWS
+Directorio del sistema	C:\WINDOWS\system32
+Dispositivo de arranque	\Device\HarddiskVolume2
+Configuración regional	México
