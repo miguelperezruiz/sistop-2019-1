@@ -1,56 +1,47 @@
 processor	: 0
-vendor_id	: AuthenticAMD
-cpu family	: 15
-model		: 107
-model name	: AMD Athlon(tm) Dual Core Processor 5000B
-stepping	: 2
-microcode	: 0x83
-cpu MHz		: 1000.000
-cache size	: 512 KB
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 76
+model name	: Intel(R) Celeron(R) CPU  N3060  @ 1.60GHz
+stepping	: 4
+cpu MHz		: 1600.000
+cache size	: 1024 KB
 physical id	: 0
 siblings	: 2
 core id		: 0
-cpu cores	: 2
+cpu cores	: 1
 apicid		: 0
 initial apicid	: 0
 fpu		: yes
 fpu_exception	: yes
-cpuid level	: 1
+cpuid level	: 11
 wp		: yes
-flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt rdtscp lm 3dnowext 3dnow rep_good nopl extd_apicid pni cx16 lahf_lm cmp_legacy svm extapic cr8_legacy 3dnowprefetch vmmcall lbrv
-bugs		: apic_c1e fxsave_leak sysret_ss_attrs null_seg swapgs_fence amd_e400
-bogomips	: 1994.59
-TLB size	: 1024 4K pages
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 movbe popcnt aes rdrand lahf_lm ida arat epb dtherm tsc_adjust smep erms
 clflush size	: 64
 cache_alignment	: 64
-address sizes	: 40 bits physical, 48 bits virtual
-power management: ts fid vid ttp tm stc 100mhzsteps
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
 
 processor	: 1
-vendor_id	: AuthenticAMD
-cpu family	: 15
-model		: 107
-model name	: AMD Athlon(tm) Dual Core Processor 5000B
-stepping	: 2
-microcode	: 0x83
-cpu MHz		: 1000.000
-cache size	: 512 KB
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 76
+model name	: Intel(R) Celeron(R) CPU  N3060  @ 1.60GHz
+stepping	: 4
+cpu MHz		: 1600.000
+cache size	: 1024 KB
 physical id	: 0
 siblings	: 2
-core id		: 1
-cpu cores	: 2
-apicid		: 1
-initial apicid	: 1
+core id		: 2
+cpu cores	: 1
+apicid		: 4
+initial apicid	: 4
 fpu		: yes
 fpu_exception	: yes
-cpuid level	: 1
+cpuid level	: 11
 wp		: yes
-flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt rdtscp lm 3dnowext 3dnow rep_good nopl extd_apicid pni cx16 lahf_lm cmp_legacy svm extapic cr8_legacy 3dnowprefetch vmmcall lbrv
-bugs		: apic_c1e fxsave_leak sysret_ss_attrs null_seg swapgs_fence amd_e400
-bogomips	: 1994.59
-TLB size	: 1024 4K pages
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 movbe popcnt aes rdrand lahf_lm ida arat epb dtherm tsc_adjust smep erms
 clflush size	: 64
 cache_alignment	: 64
-address sizes	: 40 bits physical, 48 bits virtual
-power management: ts fid vid ttp tm stc 100mhzsteps
-
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
