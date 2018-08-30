@@ -1,0 +1,24 @@
+"Informaci¢n Cpu" 
+Nombre del SO	Microsoft Windows 8.1 Single Language
+Versión	6.3.9600 compilación 9600
+Descripción adicional del SO 	No disponible
+Fabricante del SO	Microsoft Corporation
+
+Fabricante del sistema	Dell Inc.
+Modelo del sistema	Inspiron 3442
+Tipo de sistema	PC basado en x64
+SKU del sistema	0651
+Procesador	Intel(R) Pentium(R) 3558U @ 1.70GHz, 1701 Mhz, 2 procesadores principales, 2 procesadores lógicos
+Versión y fecha de BIOS	Dell Inc. A01, 28/03/2014
+Versión de SMBIOS	2.8
+Versión de controladora integrada	0.01
+Modo de BIOS	UEFI
+Fabricante de la placa base	Dell Inc.
+Modelo de placa base	No disponible
+Nombre de la placa base	Placa base
+Rol de plataforma	Móvil
+Estado de arranque seguro	Activada
+Configuración de PCR7	Enlace no posible
+Directorio de Windows	C:\Windows
+
+Configuración regional	México

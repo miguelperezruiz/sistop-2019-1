@@ -69,7 +69,7 @@ punto mencionado!
 
 2. Para crear nuestras ramas vamos a usar el comando `git branch`. La
    rama sobre la cual trabajamos por omisión se llama `master`. Vamos a
-   crear una rama llamado `practica3a`, y otra llamada
+   crear una rama llamado `practica2a`, y otra llamada
    `practica2b`. Desde el directorio base de nuestro repositorio:
 
 
