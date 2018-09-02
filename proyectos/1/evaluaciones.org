@@ -1,0 +1,180 @@
+#+title: Evaluación del primer proyecto
+#+author: Gunnar Wolf
+
+A continuación pueden consultar la evaluación del proyecto
+[[planteado aquí][./README.md]].
+
+Como comentario global: Muchos de ustedes entregaron varios archivos,
+aparentemente diferentes versiones del mismo documento. Dado que no
+puedo revisar a cada uno individualmente, sólo revisaré el primero de
+ellos en un ordenamiento alfabético.
+
+* Aguilar Miguel
+- Documentos entregados :: [[MiguelAguilar/resena.txt][./MiguelAguilar/resena.txt]]
+- Comentarios ::
+  - Un módulo no puede "no tener fin". Tu número de cuenta termina
+    en 7763. El módulo está definido como el residuo de la división
+    entera de un número sobre otro; el residuo de ...7763 / 100
+    es 63. 63/4 es 15.
+
+    Claro, esto no importa /demasiado/, es perfectamente aceptable;
+    les inventé la formulita para que hubiera una mejor cobertura de
+    los diferentes números. Pero... Bueno, suponía que a estas alturas
+    de la carrera, el concepto de aritmética modular ya lo tendrían
+    cubierto.
+  - El nombre del directorio de entrega está equivocado —
+    `MiguelAguilar` en vez de `AguilarMiguel`. No es terrible, pero me
+    dificulta un poco la vida.
+  - Cuida tu ortografía. No acentuaste nada. Mencionas la "sona" de la
+    casa, una máquina que a veces es de "coser" y a veces de
+    "cocer". Varios puntos no seguidos de mayúsculas.
+- Calificación :: 7
+
+* Amado Yerenia
+- Documentos entregados :: [[AmadoYerenia/Proyecto1.docx][./AmadoYerenia/Proyecto1.docx]],
+     [[AmadoYerenia/Proyecto1.txt][./AmadoYerenia/Proyecto1.txt]]
+- Comentarios ::
+  - Acepto que trabajen de más en vez de trabajar de menos ;-) ¡Es un
+    buen resumen del /fascículo entero/! Yo les pedí que leyeran
+    únicamente /dos textos/ (sería el de la Apple 2 y cualquier otro
+    de tu elección). Pero, ya que lo hiciste de la revista entera,
+    ¡bienvenido!
+  - Para cubrir todo lo que hiciste, el resultado fue bueno en líneas
+    generales. Hay algunas precisiones que me gustaría hacerte, pero a
+    grandes rasgos cumpliste perfectamente lo que busca el ejercicio.
+- Calificación :: 10
+
+* Buendía Laura
+- Documentos entregados :: [[BuendiaLaura/reseña_fasc003.pdf][./BuendiaLaura/reseña_fasc003.pdf]]
+- Comentarios ::
+  - Corrección: La Commodore 64 se comercializó desde 1982, no 1962
+    (pero es un /dedazo/, no hace mayor diferencia).
+  - Me da gusto ver que, a pesar de que te centraste en dos artículos
+    principales, "hojeaste" con interés el resto de la revista. ¡Bien!
+- Calificación :: 10
+
+* Chibras Luis
+- Documentos entregados ::  [[ChibrasLuis/BBCmodeloB.docx][./ChibrasLuis/BBCmodeloB.docx]],
+     [[ChibrasLuis/BBCmodeloB.txt][./ChibrasLuis/BBCmodeloB.txt]]
+- Comentarios :: 
+  - ¡Bien por relacionar conceptos con lo visto en clase!
+  - Los CPUs de los 80 no incluían una MMU (/Memory Management Unit/,
+    /Unidad de Administración de Memoria/). Un CPU, sí o sí, bajo
+    cualquier definición que he visto siempre incluyó ALU.
+  - ¿Te parece curioso que haya teclas de función programable? Bueno,
+    y... ¿Cómo definirías a las /teclas de función/ de nuestros
+    teclados actuales (F1...F12)? Cada aplicación define el uso que
+    tendrán.
+  - Ojo con la ortografía. No son tantos errores, pero sí bastante
+    notorios: /anos/ por /años/, /echo/ por /hecho/, /posterior mente/
+    por /posteriormente/, /a/ por /ha/, tanto /cavo/ y /acabo/ por
+    /cabo/, /amenos/ por /a menos/, /articulo/ por /artículo/... ¡No
+    sobre-confíes en los correctores automáticos! Todas las palabras
+    son válidas, pero no significan lo que quieres
+
+    Es importante también buscar un /flujo/ de las oraciones que
+    empleas, separar ideas por comas y puntos, cortar parrafos...
+  - Respecto a lo de estar /barriendo/ el teclado a la espera de
+    eventos, ¿recuerdas que en la clase del jueves 30 hablábamos
+    acerca de la /espera activa/? Bueno... Ahí tienes un caso ☺
+- Calificación :: 10
+
+* Facundo Edgar
+- Documentos entregados :: [[Edgar Facundo/Proyecto001.txt][./Edgar Facundo/Proyecto001.txt]],
+     [[EdgarFacundo/Proyecto001.txt][./EdgarFacundo/Proyecto001.txt]], [[Edgar Facundo/Proyecto01.pdf][./Edgar Facundo/Proyecto01.pdf]],
+     [[EdgarFacundo/Proyecto01.pdf][./EdgarFacundo/Proyecto01.pdf]], [[Edgar Facundo/Proyecto1.docx][./Edgar Facundo/Proyecto1.docx]],
+     [[EdgarFacundo/Proyecto1.docx][./EdgarFacundo/Proyecto1.docx]]
+- Comentarios :: 
+  - También llama mi atención este /Uncommitted Logic Array/. Me
+    suena, por el nombre, a que podría ser algo por el estilo de un
+    FPGA moderno, pero... ¿Qué sentido tendría en una computadora
+    destinada al mercado (semi-)masivo?
+  - La palabra /overhead/ (me sorprende que la hayan dejado sin
+    traducir) es la /sobrecarga/ — Si tienes que dejar reservados 4KB
+    de memoria para comunicación con el SO, por ejemplo, podría
+    decirse que el uso de las facilidades que te da el SO tienen una
+    sobrecarga de 4KB. Nunca vi una Acorn, pero puedo ponerte como
+    ejemplo a la Commodore 64: Venía con 64KB de memoria, pero al
+    encenderla siempre te saludaba indicando que tenías 38KB libre. ¿Y
+    los 26KB restantes? Sobrecarga.
+  - Muy buen resumen. Ya pronto, cuando hablemos de administración de
+    memoria, abordaremos el tema de los mapas de memoria.
+- Calificación :: 10
+
+* Fuentes Emma
+- Documentos entregados :: [[FuentesEmma/Proyecto_1.odt][./FuentesEmma/Proyecto_1.odt]]
+- Comentarios ::
+  - Elegiste un tema interesante; la verificación ortográfica suena
+    muy simple de realizar, pero abordas bien algunas de las
+    complicaciones que traía en los equipos de hace algunas décadas
+  - Cierto lo que dices de las /primeras cosas/: Yo babeaba por
+    conocer una Osborne. Dudo que hayan vendido muchas fuera de
+    Inglaterra, al menos nunca logré ver una.
+- Calificación :: 10
+
+* Guadarrama Edgar
+- Documentos entregados :: [[GuadarramaEdgar/Fasciculo17.odt][./GuadarramaEdgar/Fasciculo17.odt]]
+- Comentarios ::
+- Calificación ::
+
+* Hernández Alejandro
+- Documentos entregados :: [[HernandezAlejandro/Proyecto1_SO.pdf][./HernandezAlejandro/Proyecto1_SO.pdf]]
+- Comentarios ::
+- Calificación ::
+
+* Jiménez Karen
+- Documentos entregados :: [[JimenezKaren/proyecto1_krayolajmz.pdf][./JimenezKaren/proyecto1_krayolajmz.pdf]]
+- Comentarios ::
+- Calificación ::
+
+* Lara Paola
+- Documentos entregados :: [[LaraPaola/Proyecto1.pdf][./LaraPaola/Proyecto1.pdf]]
+- Comentarios ::
+- Calificación ::
+
+* Martínez Jair
+- Documentos entregados :: [[MartinezJair/Proyecto 1.pdf][./MartinezJair/Proyecto 1.pdf]]
+- Comentarios ::
+- Calificación ::
+
+* Medina Anibal
+- Documentos entregados :: [[MedinaAnibal/reseña.txt][./MedinaAnibal/reseña.txt]]
+- Comentarios ::
+- Calificación ::
+
+* Moreno Luis
+- Documentos entregados ::  [[MorenoLuis/MorenoLuisProyecto1.docx][./MorenoLuis/MorenoLuisProyecto1.docx]],
+     [[MorenoLuis/MorenoLuisProyecto1.txt][./MorenoLuis/MorenoLuisProyecto1.txt]]
+- Comentarios ::
+- Calificación ::
+
+* Pérez Miguel
+- Documentos entregados :: [[PerezMiguel/Proyecto1][./PerezMiguel/Proyecto1]]
+- Comentarios ::
+- Calificación ::
+
+* Ramírez Ángel
+- Documentos entregados :: [[RamirezAngel/RamirezAngelProyecto1.docx][./RamirezAngel/RamirezAngelProyecto1.docx]],
+     [[RamirezAngel/RamirezAngelProyectoUno.docx][./RamirezAngel/RamirezAngelProyectoUno.docx]]
+- Comentarios ::
+- Calificación ::
+
+* Ramírez Simón
+- Documentos entregados :: [[RamirezSimon/proyectosistop.txt][./RamirezSimon/proyectosistop.txt]]
+- Comentarios ::
+- Calificación ::
+
+* Sánchez Andrew
+- Documentos entregados :: [[SánchezAndrew/primerProyecto.odt][./SánchezAndrew/primerProyecto.odt]]
+- Comentarios ::
+- Calificación ::
+
+* Tolentino Eduardo
+- Documentos entregados :: [[TolentinoEduardo/P1.docx][./TolentinoEduardo/P1.docx]]
+- Comentarios ::
+- Calificación ::
+
+* Valeriano Cristian
+- Documentos entregados :: [[ValerianoCristian/proyecto1.pdf][./ValerianoCristian/proyecto1.pdf]]
+- Comentarios ::
+- Calificación ::
