@@ -278,24 +278,93 @@ ellos en un ordenamiento alfabético.
 - Documentos entregados :: [[RamirezAngel/RamirezAngelProyecto1.docx][./RamirezAngel/RamirezAngelProyecto1.docx]],
      [[RamirezAngel/RamirezAngelProyectoUno.docx][./RamirezAngel/RamirezAngelProyectoUno.docx]]
 - Comentarios ::
-- Calificación ::
+  - Mencionas que «Es curioso que en aquel tiempo la RAM y la ROM de
+    un equipo, como este, sea del mismo tamaño, ya que hoy en día hay
+    una gran diferencia de capacidad entre una y otra. La ROM de una
+    maquina suele tener mucha más capacidad de memoria que una RAM» —
+    ¡Falso! Justo al contrario. Normalmente no sabemos el tamaño
+    exacto de nuestro ROM, pero podemos asumir que es bastante pequeño
+    (basta con tener espacio para albergar al BIOS / UEFI);
+    recientemente /re-flasheé/ el ROM de mi portátil, y es de 12MB (y
+    la computadora venía de serie con 4GB de RAM).
+  - Nuestras computadoras actuales también tienen teclas para mover el
+    mouse en la pantalla, ¿qué no? ;-) Pero, sí, pocas máquinas de esa
+    generación empleaban el mouse, la interfaz era mayormente textual.
+
+    La BBC Modelo B se vendió de 1981 a 1994; el mouse se inventó
+    hacia 1968 (¿recuerdas a la [[https://www.youtube.com/watch?v=yJDv-zdhzMY][madre de todos los demos]] que les
+    presenté en nuestro primer día de clases?), y hacia 1973 aparecio
+    una interfaz gráfica que hoy en día resulta reconocible, la [[https://en.wikipedia.org/wiki/History_of_the_graphical_user_interface#Xerox_PARC][Xerox
+    PARC]]. Pero los primeros entornos de escritorio en computadoras
+    personales llegaron apenas hasta 1983.
+  - Respecto al texto de "Almacenamiento seguro", es un buen
+    resumen. Hoy en día habría que actualizar muchas cosas, algunas de
+    las cuales cubriremos, como el /firmware/ (que es RAM disfrazado
+    de ROM) y las /unidades Flash/ (que son básicamente ROM disfrazado
+    de unidades de disco).
+- Calificación :: 10
 
 * Ramírez Simón
 - Documentos entregados :: [[RamirezSimon/proyectosistop.txt][./RamirezSimon/proyectosistop.txt]]
 - Comentarios ::
-- Calificación ::
+  - Ah, las heterogeneidades de nuestro idioma... Sí, siempre que leas
+    un texto español de computación hablarán de "ordenador" por
+    "computadora", "fichero" por "archivo", y una gran cantidad de
+    términos que nos resultan incómodos y poco
+    naturales. Afortunadamente, en general podemos entenderlos sin
+    más.
+  - ¡El texto del segundo artículo es /Mensaje comprendido/, no
+    /Mensaje comprimido/ como lo indicas! El desarrollo del texto es
+    correcto.
+- Calificación :: 10
 
 * Sánchez Andrew
 - Documentos entregados :: [[SánchezAndrew/primerProyecto.odt][./SánchezAndrew/primerProyecto.odt]]
 - Comentarios ::
-- Calificación ::
+  - Te tocó revisar una de las computadoras menos comunes de toda la
+    serie. Prácticamente todas las computadoras de la época venían con
+    algún dialecto de BASIC; a Forth únicamente llegué a ver como
+    software opcional para la Apple ][. En esa época, era visto como
+    "complejo", y nunca lo aprendí. Sin embarego, leyendo [[https://es.wikipedia.org/wiki/Forth][su entrada
+    en Wikipedia]], queda bastante más claro. Tal vez una de las cosas
+    más confusas sería el uso de la [[https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa][notación polaca inversa]] (¿estás
+    familiarizado con el término?)
+
+    Si bien eso la hace una computadora más interesante, estoy seguro
+    que contribuyó a que no despegara. ¿Quién quiere aprender /eso/?
+    ;-)
+  - Buen resumen relativo a los /sprites/. Si el tema te interesa un
+    poco más, te invito a revisar el material con el que yo aprendí a
+    hacerlo (¡!), lo encontré hace cosa de un año mientras
+    /escombraba/ en casa. Está en español, y está dirigido a niños
+    entre 8 y 12 años para la /Commodore 64/: [[https://gwolf.org/files/C64_graficacion_y_sonido.pdf][C64 Graficación y
+    Sonido]], y puedes usar en línea [[http://www.c64js.com/][una C64 emulada en Javascript]].
+- Calificación :: 10
 
 * Tolentino Eduardo
 - Documentos entregados :: [[TolentinoEduardo/P1.docx][./TolentinoEduardo/P1.docx]]
 - Comentarios ::
-- Calificación ::
+  - ¡Ojo! Indicas que trabajaste sobre el fascículo 12, pero en
+    realidad fue sobre el 13. ¡me costó trabajo encontrarlo para
+    referencia! (no califico a ciegas). Es correcto, es el que te
+    tocaba según tu matrícula.
+    - Mencionas también varias veces "Sord MD5" como modelo de
+      computadora, cuando era simplemente "M5". También con eso
+      lograste confundirme un poco...
+  - El artículo de la Sord menciona un dato muy importante, el
+    esfuerzo de estandarización MSX, que si bien no fue tan exitoso
+    como se esperaba, apuntaba en el sentido que poco tiempo después
+    tomó el mercado.
+- Calificación :: 10
 
 * Valeriano Cristian
 - Documentos entregados :: [[ValerianoCristian/proyecto1.pdf][./ValerianoCristian/proyecto1.pdf]]
 - Comentarios ::
-- Calificación ::
+  - Me llaman la atención varios puntos en particular de la Jupiter
+    Ace, que te tocó revisar. Te remito al comentario que hice a tu
+    compañero Andrew Sánchez, al respecto.
+  - Y, al igual que Andrew, elegiste el texto acerca de los /Gráficos
+    con vida/ — No me sorprende que llame su atención :-)
+  - No recuerdo ver nada que aparentara "gráficos complejos en tres
+    dimensiones", pero supongo que era posible, al menos crudamente.
+- Calificación :: 10
