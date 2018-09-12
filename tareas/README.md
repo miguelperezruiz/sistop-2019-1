@@ -1,3 +1,3 @@
 # Tareas
 
-<!-- 1. [titulo](./1/README.md) (Entrega: xx.xx.2018) -->
+1. [Ejercicios de sincronización](./1/README.md) (Entrega: 20.09.2018)
