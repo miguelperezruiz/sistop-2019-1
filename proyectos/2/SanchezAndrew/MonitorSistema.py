@@ -1,7 +1,12 @@
+#!/usr/bin/python
+
 import wx
+import threading
+import time
+import os
 
 class Opciones(wx.Frame):
-# Todas estas secuencias son para inicializar la ventana donde apareceran las opciones a seleccionar#
+# Todas estas secuencias son para iniciar la ventana donde apareceran las opciones a seleccionar#
   def __init__(self, parent, id, title):
     wx.Frame.__init__(self, parent, id, title, size=(300, 170))
 
@@ -52,7 +57,24 @@ class Opciones(wx.Frame):
     if self.cb.GetValue():
       print "MEMORIA"
 
-# Para poner a funcionar las definiciones #
+
+  def disco():
+    print ">>>Disco duro<<<\n"
+
+  def memoria():
+    print ">>>memoria<<<\n"
+
+  def procesos():
+    print ">>>procesos<<<\n"
+
+  def cpu():
+    print ">>>cpu<<<\n"
+
+  def ElegirOpcion():
+    print ">>>aqui se debe elegir opcion<<<\n"
+
+
+# Estos se ocupan para hacer uso de la ventana con wxpython #
 casillasBooleanas = wx.App()
 Opciones(None, -1, 'Opcion a monitorear')
 casillasBooleanas.MainLoop()
