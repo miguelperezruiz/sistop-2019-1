@@ -1,6 +1,7 @@
 import wx
 
 class Opciones(wx.Frame):
+# Todas estas secuencias son para inicializar la ventana donde apareceran las opciones a seleccionar#
   def __init__(self, parent, id, title):
     wx.Frame.__init__(self, parent, id, title, size=(300, 170))
 
@@ -29,6 +30,8 @@ class Opciones(wx.Frame):
     self.Show()
     self.Centre()
 
+# En la sección siguiente se puede saber que opción es seleccionada y mostrarla en la terminal del sistema #
+
   def boolAux(self, event):
     if self.cb.GetValue():
       print "marcar para seleccionar"
@@ -49,6 +52,7 @@ class Opciones(wx.Frame):
     if self.cb.GetValue():
       print "MEMORIA"
 
+# Para poner a funcionar las definiciones #
 casillasBooleanas = wx.App()
 Opciones(None, -1, 'Opcion a monitorear')
 casillasBooleanas.MainLoop()
