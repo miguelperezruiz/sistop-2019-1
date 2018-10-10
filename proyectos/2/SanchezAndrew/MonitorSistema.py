@@ -32,7 +32,12 @@ class Opciones(wx.Frame):
     self.cb.SetValue(False)
     wx.EVT_CHECKBOX(self, self.cb.GetId(), self.boolCpu)
 
-    self.cb = wx.CheckBox(Opciones, -1, 'MarcaParaSeleccionar', (80, 80))
+    self.cb = wx.CheckBox(Opciones, -1, 'CPUtemp', (10, 80))
+    self.cb.SetValue(False)
+    wx.EVT_CHECKBOX(self, self.cb.GetId(), self.boolCpu)
+
+
+    self.cb = wx.CheckBox(Opciones, -1, 'MarcaParaSeleccionar', (125, 80))
     self.cb.SetValue(False)
     wx.EVT_CHECKBOX(self, self.cb.GetId(), self.boolAux)
 
@@ -46,6 +51,10 @@ class Opciones(wx.Frame):
       print "marcar para seleccionar"
 
   def boolCpu(self, event):
+    if self.cb.GetValue():
+      print "CPUtemp"
+
+  def boolCpuTem(self, event):
     if self.cb.GetValue():
       print "CPU"
 
@@ -66,7 +75,7 @@ class Opciones(wx.Frame):
 def disco():
   global mutex
   mutex.acquire()
-  print "/////Disco duro/////\n"
+  print ">>>Disco duro\n"
   os.system("du -h") #Descubre archivos mas grandes del sistema
   os.system("tree") #Mostrar los ficheros y carpetas en forma de arbol comenzando por la raiz. (Como git lg)
   mutex.release()
@@ -75,7 +84,7 @@ def disco():
 def memoria():
   global mutex
   mutex.acquire()
-  print "/////Memoria/////\n"
+  print ">>>Memoria\n"
  #Se visualiza la cantidad total de memoria libre, la memoria fisica utilizada y el intercambio en el sistema
   os.system("free")
   os.system("cat /proc/meminfo") #Verificar el uso de memoria
@@ -85,7 +94,7 @@ def memoria():
 def procesos():
   global mutex
   mutex.acquire()
-  print "/////Procesos/////\n"
+  print ">>>Procesos\n"
   os.system("ps")     #Procesos actuales
 #para imprimir los procesos en forma de arbol como lo hace el comando que configuramos git lg
   os.system("pstree") 
@@ -95,8 +104,15 @@ def procesos():
 def cpu():
   global mutex
   mutex.acquire()
-  print "/////Informacion del CPU/////\n"
+  print ">>> Informacion del CPU\n"
   os.system("cat /proc/cpuinfo")
+  mutex.release()
+
+def cpuTemp():
+  global mutex
+  mutex.acquire()
+  print ">>> Temperatura del CPU\n"
+  os.system(" sensors ")
   mutex.release()
 
 	#Para elgir la Opcion a monitorear
@@ -115,6 +131,9 @@ def Opciones(opcion):
   elif (opcion == "cpu"):
     filament = threading.Thread(target = cpu)
     filament.start()
+  elif (opcion == "cpuTemp"):
+    filament = threading.Thread(target = cpuTemp)
+    filament.start()
   else:
    print "Intente de nuevo"
 
@@ -127,6 +146,8 @@ def hilo():
   filament2.start()
   filament3 = threading.Thread(target = cpu)
   filament3.start()
+  filament4 = threading.Thread(target = cpuTemp)
+  filament4.start()
 
 def MS():	#MonitorSistema
   global opcion, thr, mutex
@@ -134,7 +155,7 @@ def MS():	#MonitorSistema
   while thr == 0:
       time.sleep(.5)
       print "===>Opciones<===\n"
-      print "disco\tmemoria\tprocesos\tcpu"
+      print "disco\tmemoria\tprocesos\tcpu\tcpuTemp"
       opcion = raw_input("ingreseOpcion\t\t")
       Opciones(opcion)
   mutex.release()
