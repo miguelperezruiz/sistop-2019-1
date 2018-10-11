@@ -84,3 +84,29 @@ def hilos():
 	threading.Thread(target=procesos, args=[13]).start()
 	threading.Thread(target=porcentaje, args=[psutil.cpu_percent(interval=1),2]).start()
 	threading.Thread(target=porcentaje, args=[psutil.virtual_memory().percent,4]).start()
+<<<<<<< HEAD
+=======
+	
+#Funcion que dibuja toda la interfaz
+def interfaz(args):
+	global pantalla
+	global contador
+	global NumHilos
+	
+	
+	
+	while True:	
+
+		pantalla = curses.initscr()
+		
+		
+		pantalla.addstr(0, 45, "Monitor de Procesos",curses.A_BOLD)
+		pantalla.addstr(2, 1, "Uso de CPU:")
+		pantalla.addstr(4, 1, "Uso de MEMORIA:")
+		pantalla.addstr(6, 28, platform.system())
+		pantalla.addstr(6, 34, platform.processor())
+		pantalla.addstr(6, 43,"%d Nucleos"%psutil.cpu_count())
+		pantalla.addstr(7, 3,"Memoria Total: "+convesion(psutil.virtual_memory().total))
+		pantalla.addstr(7, 30,"Memoria Libre:")
+		pantalla.addstr(7, 55,"Memoria en Uso:")
+>>>>>>> proyec2
