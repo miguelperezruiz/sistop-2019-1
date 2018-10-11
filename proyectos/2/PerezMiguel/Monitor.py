@@ -55,3 +55,32 @@ def dentbarre():
 	barrer.acquire()
 	barrer.release()
 
+# porcentaje
+def porcentaje (fuente,y):
+	tamañio = 50
+	percent = int(round(fuente/2))
+	for i in range(0,percent):
+		pantalla.addstr(y,i+18," ",curses.A_STANDOUT)
+	for i in range(percent,tamañio):
+		pantalla.addstr(y,i+18," ")
+	if fuente<10:
+		pantalla.addstr(y,18+tamañio,"| 0%d %%"%fuente)
+	else:
+		pantalla.addstr(y,18+tamañio,"| %d %%"%fuente)
+	pantalla.refresh()
+	
+	dentbarre()
+
+# la memoria usada y disponible
+def memoriaUsada():
+	pantalla.addstr(7,45,convesion(psutil.virtual_memory().available))
+	pantalla.addstr(7,71,convesion(psutil.virtual_memory().used))
+	
+	dentbarre()
+
+# inicia los hilos de las funciones 
+def hilos():
+	threading.Thread(target=memoriaUsada, args=[]).start()
+	threading.Thread(target=procesos, args=[13]).start()
+	threading.Thread(target=porcentaje, args=[psutil.cpu_percent(interval=1),2]).start()
+	threading.Thread(target=porcentaje, args=[psutil.virtual_memory().percent,4]).start()
