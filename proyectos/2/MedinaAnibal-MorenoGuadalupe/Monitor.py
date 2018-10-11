@@ -1,7 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from tkinter import *
+from tkinter import ttk
 import subprocess
 import time
 import sys
 import threading
+import psutil
 
 # Numero de nucleos que tiene nuestra computadora
 NumNucleos = int(subprocess.getoutput("grep processor /proc/cpuinfo | wc -l"))
@@ -66,3 +71,144 @@ def Sistema():
     cpu_uso = (int(estado2) - int(estado1)) / NumNucleos
     alertProces()
     return str(cpu_uso)
+
+# saber el porcentaje de uso que está Inactivo
+def cpuInactivo():
+    estado1 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
+    time.sleep(1)
+    estado2 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
+    cpu_uso = (int(estado2) - int(estado1)) / NumNucleos
+    alertProces()
+    return str(cpu_uso)
+
+
+
+# memoria total que tiene nuestra computadora, se muestra en kB
+def MemoTotal():
+    memtotal =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '1 p'")
+    alertProces()
+    return memtotal
+
+# memoria libre que tiene nuestra computadora( se muestra en kB)
+def MemoLibre():
+    memlibre =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '2 p'")
+    alertProces()
+    return memlibre
+
+# memoria que está usando el usuario(se muestra en kB)
+def MemoUso():
+    memuso =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '7 p'")
+    alertProcess()
+    return memuso
+
+# memoria de intercambio total que tiene nuestra computadora(se muestra en kB)
+def MemoSwapTotal():
+    memswap =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '19 p'")
+    alertProces()
+    return memswap
+
+# memoria de intercambio libre que tiene nuestra computadora(se muestra en kB)
+def MemoSwapLibre():
+    memswaplibre =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '20 p'")
+    alertProces()
+    return memswaplibre
+
+# memoria de intercambio que está usando(se muestra en kB)
+def MemoSwapUso():
+    memswapuso =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '6 p'")
+    alertProces()
+    return memswapuso
+
+
+
+# número de procesos que tenemos
+def NumProcesos():
+    numprocesos = subprocess.getoutput("cat /proc/loadavg | grep -o '/[0-9]*'")
+    # Filtramos la información inutil
+    numprocesos = numprocesos[1:]
+    alertProces()
+    return numprocesos
+
+# número de procesos que estén ejecutandose en este momento
+def NumProcEjecucion():
+    numprocesos = subprocess.getoutput("cat /proc/loadavg | grep -o '[0-9]*/'")
+    numprocesos = numprocesos[:-1]
+    alertProces()
+    return numprocesos
+
+
+
+# convertir los segundos en un formato de HH:MM:SS para mayor estetica al momento de mostrarlo
+def horaCompleta(segundos):
+    # Para saber las horas dividimos los segundos entre 3600, muy importante hacerlo con el doble diagonal, para división entera
+    horas = segundos // 3600
+    # Agregamos un 0 en caso de que las horas no acompleten la decena
+    if horas < 10:
+        horas = '0' + str(horas)
+    # Para saber los minutos divimos el residuo de lo que quedó de las horas entre 60
+    minutos = (segundos % 3600) // 60
+    # Agregamos un 0 en caso de que los minutos no acompleten la decena
+    if minutos < 10:
+        minutos = '0' + str(minutos)
+    # Para calcular los segundos sacamos el modulo del residuo, lo que asegura que que no será ni horas ni minutos
+    segundos = (segundos % 3600) % 60
+    # Agregamos un 0 en caso de que los segundos no acompleten la decena
+    if segundos < 10:
+        segundos = '0' + str(segundos)
+    # Retornamos la hora en formato HH:MM:SS
+    return str(horas) + ":" + str(minutos) + ":" + str(segundos)
+
+# tiempo que ha estado encendido el sistema
+def tFuncionamiento():
+    tfuncionamiento = subprocess.getoutput("cat /proc/uptime | while read c1 c2; do echo $c1; done")
+    # Filtramos el tiempo ignorando a partir del punto decimal(los últimos 3 digitos), lo convertimos en entero
+    tfuncionamiento = int(tfuncionamiento[:-3])
+    # Transformamos los segundos en un formato más presentable
+    tfuncionamiento = horaCompleta(tfuncionamiento)
+    alertProces()
+    return tfuncionamiento
+
+# tiempo que ha estado inactivo el sistema
+def tInactivo():
+    tinac = subprocess.getoutput("cat /proc/uptime | while read c1 c2; do echo $c2; done")
+    # Filtramos el tiempo ignorando a partir del punto decimal(los últimos 3 digitos), lo convertimos en entero
+    tinac = int(tinac[:-3])
+    # Transformamos los segundos en un formato más presentable
+    tinac = horaCompleta(tinac)
+    alertProces()
+    return tinac
+
+
+
+# listar los procesos que tengamos, hacemos uso del módulo "psutil"
+def listProces():
+    username = []
+    pid = []
+    nombre = []
+    status = []
+    for proc in psutil.process_iter():
+        pinfo = proc.as_dict(attrs=['pid', 'name', 'username','status'])
+        for llave,valor in pinfo.items():
+            if llave == 'username':
+                username.append(valor)
+            elif llave == 'pid':
+                pid.append(valor)
+            elif llave == 'name':
+                nombre.append(valor)
+            elif llave == 'status':
+                status.append(valor)
+    alertProces()
+    return [len(username),username,pid,nombre,status]
+
+
+
+funcionesALanzar = [cpuUsuario, cpuSistema,cpuInactivo, memTotal,memLibre,memUso,memSwapTotal,memSwapLibre,memSwapUso,numProcesos,numProcEjecucion,tFuncionamiento,tInactivo,listaProc]
+func_monitor = len(funcionesALanzar)
+
+# lanzar los hilos
+def iniciaHilos():
+    for i in funcionesALanzar:
+        threading.Thread(target = i).start()
+
+
+
