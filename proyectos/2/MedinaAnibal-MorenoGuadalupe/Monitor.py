@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
  #!/usr/bin/env python
 =======
@@ -8,6 +9,9 @@
 =======
 #!/usr/bin/env python
 >>>>>>> 4
+=======
+#!/usr/bin/env python
+>>>>>>> 5
 # -*- coding: utf-8 -*-
 from tkinter import *
 from tkinter import ttk
@@ -92,9 +96,12 @@ def cpuInactivo():
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 4
+=======
+>>>>>>> 5
 
 
 # memoria total que tiene nuestra computadora, se muestra en kB
@@ -116,8 +123,11 @@ def MemoUso():
     return memuso
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 3
 =======
+=======
+>>>>>>> 5
 # memoria de intercambio total que tiene nuestra computadora(se muestra en kB)
 def MemoSwapTotal():
     memswap =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '19 p'")
@@ -229,4 +239,79 @@ def iniciaHilos():
 
 
 
+<<<<<<< HEAD
 >>>>>>> 4
+=======
+# interfaz gráfica con tkinter
+def interfaz():
+	contenedor = Tk()
+	contenedor.title("Monitor")
+	frame = Frame(contenedor,heigh=600,width=500)
+	frame.pack(padx=20,pady=20)
+	frame.configure(bg = "black")
+
+	Label(frame,text="*Características",fg="red",font="Verdana 10",bg="black").place(x=0,y=0)
+	Label(frame,text="Kernel:   " +  kernel(),font="Verdana 10",bg="black",fg="white").place(x=0,y=20)
+	Label(frame,text="Procesador:   " + modeloCPU(),font="Verdana 10",bg="black",fg="white").place(x=0,y=40)
+	Label(frame,text="-----------------------------------------------------------------------------------------------------------------------------",bg="black",fg="white").place(x=0,y=60)
+	Label(frame,text="*Memoria",font="Verdana 10",bg="black",fg="red").place(x=0,y=80)
+	Label(frame,text="memoria: ",font="Verdana 10",bg="black",fg="white").place(x=0,y=100)
+	Label(frame,text=MemoTotal() + " Total",font="Verdana 10",bg="black",fg="white").place(x=80,y=100)
+	Label(frame,text=MemoLibre() + " Libre",font="Verdana 10",bg="black",fg="white").place(x=210,y=100)
+	Label(frame,text=MemoUso() + " En uso",font="Verdana 10",bg="black",fg="white").place(x=340,y=100)
+	Label(frame,text="swap: ",font="Verdana 10",bg="black",fg="white").place(x=0,y=120)
+	Label(frame,text=MemoSwapTotal() + " Total",font="Verdana 10",bg="black",fg="white").place(x=80,y=120)
+	Label(frame,text=MemoSwapLibre() + " Libre",font="Verdana 10",bg="black",fg="white").place(x=210,y=120)
+	Label(frame,text=MemoSwapUso() + " En uso",font="Verdana 10",bg="black",fg="white").place(x=340,y=120)
+	Label(frame,text="-----------------------------------------------------------------------------------------------------------------------------",bg="black",fg="white").place(x=0,y=140)
+	Label(frame,text="*CPU",font="Verdana 10",bg="black",fg="red").place(x=0,y=160)
+	Label(frame,text="%CPU:",font="Verdana 10",bg="black",fg="white").place(x=0,y=180)
+	Label(frame,text=Usuario()+"% Uso",font="Verdana 10",bg="black",fg="white").place(x=80,y=180)
+	Label(frame,text=Sistema()+"% Sys",font="Verdana 10",bg="black",fg="white").place(x=210,y=180)
+	Label(frame,text=cpuInactivo()+"% Inac",font="Verdana 10",bg="black",fg="white").place(x=340,y=180)
+	Label(frame,text="Tiempo: ",font="Verdana 10",bg="black",fg="white").place(x=0,y=200)
+	Label(frame,text=tFuncionamiento()+" Funcionando",font="Verdana 10",bg="black",fg="white").place(x=120,y=200)
+	Label(frame,text=tInactivo()+" Inactivo",font="Verdana 10",bg="black",fg="white").place(x=320,y=200)
+	Label(frame,text="-----------------------------------------------------------------------------------------------------------------------------",bg="black",fg="white").place(x=0,y=220)
+	procesosListado = listProces()
+	Label(frame,text="*Procesos",font="Verdana 10",bg="black",fg="red").place(x=0,y=240)
+	Label(frame,text="Total:",font="Verdana 10",bg="black",fg="white").place(x=0,y=260)
+	Label(frame,text=procesosListado[0],font="Verdana 10",bg="black",fg="white").place(x=80,y=260)
+	Label(frame,text="Activos: ",font="Verdana 10",bg="black",fg="white").place(x=250,y=260)
+	Label(frame,text="Username ",font="Verdana 10",bg="black",fg="cyan").place(x=0,y=290)
+	Label(frame,text="PID ",font="Verdana 10",bg="black",fg="cyan").place(x=125,y=290)
+	Label(frame,text="Nombre ",font="Verdana 10",bg="black",fg="cyan").place(x=250,y=290)
+	Label(frame,text="Estado ",font="Verdana 10",bg="black",fg="cyan").place(x=375,y=290)
+	Button( text='Salir', command=quit, bg="black",fg="white", relief="raised", bd=5).pack(side=RIGHT)
+	Button( text='Actualizar', command=contenedor.destroy, bg="black",fg="white", relief="raised", bd=5).pack(side=RIGHT)
+	ejex = 0
+	for i in range(1,len(procesosListado)):
+	    ejey = 310
+	    for j in range(procesosListado[0]):
+	        Label(frame,text=procesosListado[i][j],font="Verdana 10",bg="black",fg="white").place(x=ejex,y=ejey)
+	        ejey += 20
+	    ejex += 125
+	frame.mainloop()
+
+
+
+
+
+def main():
+	global conthilos
+	while True:
+		iniciaHilos()
+		# Espera a que todos los hilos terminen
+		print("una vez")
+		signal.acquire()
+		interfaz()
+		# Mutex para reiniciar contador
+		mutex.acquire()
+		contahilos = 0
+		mutex.release()
+
+
+
+# Ejecución del programa
+main()
+>>>>>>> 5
