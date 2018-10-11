@@ -55,3 +55,55 @@ def dentbarre():
 	barrer.acquire()
 	barrer.release()
 
+# porcentaje
+def porcentaje (fuente,y):
+	tamañio = 50
+	percent = int(round(fuente/2))
+	for i in range(0,percent):
+		pantalla.addstr(y,i+18," ",curses.A_STANDOUT)
+	for i in range(percent,tamañio):
+		pantalla.addstr(y,i+18," ")
+	if fuente<10:
+		pantalla.addstr(y,18+tamañio,"| 0%d %%"%fuente)
+	else:
+		pantalla.addstr(y,18+tamañio,"| %d %%"%fuente)
+	pantalla.refresh()
+	
+	dentbarre()
+
+# la memoria usada y disponible
+def memoriaUsada():
+	pantalla.addstr(7,45,convesion(psutil.virtual_memory().available))
+	pantalla.addstr(7,71,convesion(psutil.virtual_memory().used))
+	
+	dentbarre()
+
+# inicia los hilos de las funciones 
+def hilos():
+	threading.Thread(target=memoriaUsada, args=[]).start()
+	threading.Thread(target=procesos, args=[13]).start()
+	threading.Thread(target=porcentaje, args=[psutil.cpu_percent(interval=1),2]).start()
+	threading.Thread(target=porcentaje, args=[psutil.virtual_memory().percent,4]).start()
+	
+#Funcion que dibuja toda la interfaz
+def interfaz(args):
+	global pantalla
+	global contador
+	global NumHilos
+	
+	
+	
+	while True:	
+
+		pantalla = curses.initscr()
+		
+		
+		pantalla.addstr(0, 45, "Monitor de Procesos",curses.A_BOLD)
+		pantalla.addstr(2, 1, "Uso de CPU:")
+		pantalla.addstr(4, 1, "Uso de MEMORIA:")
+		pantalla.addstr(6, 28, platform.system())
+		pantalla.addstr(6, 34, platform.processor())
+		pantalla.addstr(6, 43,"%d Nucleos"%psutil.cpu_count())
+		pantalla.addstr(7, 3,"Memoria Total: "+convesion(psutil.virtual_memory().total))
+		pantalla.addstr(7, 30,"Memoria Libre:")
+		pantalla.addstr(7, 55,"Memoria en Uso:")
