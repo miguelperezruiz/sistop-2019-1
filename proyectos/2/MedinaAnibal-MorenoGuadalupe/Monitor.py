@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
  #!/usr/bin/env python
+=======
+#!/usr/bin/env python
+>>>>>>> 3
 # -*- coding: utf-8 -*-
 from tkinter import *
 from tkinter import ttk
@@ -82,3 +86,26 @@ def cpuInactivo():
     alertProces()
     return str(cpu_uso)
 
+<<<<<<< HEAD
+=======
+
+
+# memoria total que tiene nuestra computadora, se muestra en kB
+def MemoTotal():
+    memtotal =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '1 p'")
+    alertProces()
+    return memtotal
+
+# memoria libre que tiene nuestra computadora( se muestra en kB)
+def MemoLibre():
+    memlibre =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '2 p'")
+    alertProces()
+    return memlibre
+
+# memoria que está usando el usuario(se muestra en kB)
+def MemoUso():
+    memuso =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '7 p'")
+    alertProcess()
+    return memuso
+
+>>>>>>> 3
