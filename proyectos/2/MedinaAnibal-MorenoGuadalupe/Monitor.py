@@ -1,7 +1,13 @@
+
+ #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from tkinter import *
+from tkinter import ttk
 import subprocess
 import time
 import sys
 import threading
+import psutil
 
 # Numero de nucleos que tiene nuestra computadora
 NumNucleos = int(subprocess.getoutput("grep processor /proc/cpuinfo | wc -l"))
@@ -66,3 +72,13 @@ def Sistema():
     cpu_uso = (int(estado2) - int(estado1)) / NumNucleos
     alertProces()
     return str(cpu_uso)
+
+# saber el porcentaje de uso que está Inactivo
+def cpuInactivo():
+    estado1 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
+    time.sleep(1)
+    estado2 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
+    cpu_uso = (int(estado2) - int(estado1)) / NumNucleos
+    alertProces()
+    return str(cpu_uso)
+
