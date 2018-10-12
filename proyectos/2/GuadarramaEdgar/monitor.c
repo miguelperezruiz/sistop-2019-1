@@ -105,7 +105,7 @@ void cargaInfoCPU()
 	char sInfo[256];
 	int i=0;
 	FILE *fp = fopen("/proc/cpuinfo","r");
-	for(i=0;i<16;i++)
+	for(i=0;i<16;i++) // Busca linea por linea las palabras clave en este caso sus nucleos y el modelo de procesador
 	{
 		fgets(sInfo, 256, fp);
 		if(strstr(sInfo, "model name")!=NULL)
@@ -129,7 +129,7 @@ void cargaInfoMemoria()
 	char sInfo[256];
 	int i=0;
 	FILE *fp = fopen("/proc/meminfo","r");
-	for(i=0;i<16;i++)
+	for(i=0;i<16;i++) //Funciona igual que el 'for' anterior
 	{
 		fgets(sInfo, 256, fp);
 		if(strstr(sInfo, "MemTotal")!=NULL)
@@ -159,7 +159,8 @@ int listarProcesos(GtkWidget **listaWidgets)
 	proc_dir = opendir("/proc");
 	while ((ent = readdir(proc_dir)))
 	{
-		if ((*ent->d_name>'0') && (*ent->d_name<='9')) /* Be sure it's a pid */
+		if ((*ent->d_name>'0') && (*ent->d_name<='9')) // Lista los archivos del directorio /proc 'Solo los archivos que tengan numeros
+//									 como nombre seran procesos e ignora a los demas archivos en el directorio'
 		{
 			listaWidgets[total] = gtk_button_new_with_label(ent->d_name);
 			++total;
@@ -283,7 +284,8 @@ ejemplo de un bug:
 In pixman_region_append_non_o_: The expression y1 < y2 was false
 Set a breakpoint on '_pixman_log_error' to debug
 corrupted double-linked list
-WidgetsAborted (core dumped)*/
+WidgetsAborted (core dumped)
+*/
 	for(;;) {
 		cargaUsoActualCPU();
 		cargaUsoPromedioCPU();
@@ -313,11 +315,15 @@ int main(int argc, char *argv[])
 	sistema.memoriaLibre[0]=0;
 	
 	/*
-
+		CargaInfoCPU  solo se utilzia una vez, crea la etiqueta ya con el mdoeloCPU, #nucleos fisicos y virtuales llenados
 	*/
 	cargaInfoCPU();
 	pthread_create(&t_interfaz,NULL,(void*)mostrarInterfaz,NULL); 
+	/*
+		Una vez creados los botnoes y etiquetas se lanzancan los hilos ciclicos para que actualicen los textos de forma independiente
+	*/
 	pthread_create(&t_stat,NULL,(void*)cargarNuevosDatos,NULL);
-	pthread_join(t_interfaz, NULL);
+	pthread_join(t_interfaz, NULL);//ya que la señal de cerrado del programa le da el hilo interfaz esperamos a que finalice el hilo
+	// Esta es la señal de que el usuario dio clicl en la 'x' de cerrar ventana
 	return(0);
 }
