@@ -1,21 +1,23 @@
 
 Hecho por Brenda Paola Lara Moreno
 Sistop-2019-1|FI-UNAM|iPaw
- 12 - Octubre - 2018
+ 11 - Octubre - 2018
  Proyecto 2
 Lenguaje: Python
 Este trabajo se desarrollo en la version 2.7.10
 Para ejecutarlo requiere de Python,psutil y ejecutarlo desde la terminal posisionandose en
 el directorio donde se encuentre guardado el archivo y
-posteriormente ejecutarlo de la sig manera ----> python monitorSystem.py
+posteriormente ejecutarlo de la sig manera ----> python monitorSystemMac.py | python monitorSystemUL.py (DEpende de que version se ejecute).
+
+El funcionamiento principal de estos programas es mostrar la informacion del sistema, utilizando semaforos para mostrar 
+por procesos esta informacion, en un tiempo limitado por los mismos.
+Existen dos versiones ya que en un principio lo realice con un sistema MacOS y no obtenia satisfactoriamente los datos requeridos. 
 
 
+Para el proyecto de la versión para MacOS fue utilizado psutil, que segun la documentacion que consulte solo viene restringido a unas cuantas opciones (https://psutil.readthedocs.io/en/latest/)
+Cabe mencionar que las funciones utilizadas son diferentes para cada sistema.
 
-Para el proyecto utilice dos versiones, una en la cual trate de obtener la informacion desde un sistema MacOS utilizando psutil, que segun la documentacion que consulte solo viene restringido a unas cuantas opciones (https://psutil.readthedocs.io/en/latest/)
-
-En la otra version para obtener la informacion me base en sistemas UNIX/LINUX (se supone que macOS es derivado de UNIX , pero no, esta version no funciona en MacOS 😔 )
-
-
+En la otra version para obtener la informacion me base en sistemas UNIX/LINUX (se supone que macOS es derivado de UNIX , pero no, esta version (monitorSystemUL.py) no funciona en MacOS 😔 )
 
 
 ------------------------------- Instalacion de psutil ------------------------------------------------
