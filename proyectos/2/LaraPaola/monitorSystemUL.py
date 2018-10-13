@@ -7,7 +7,7 @@
 #Este trabajo se desarrollo en la version 2.7.10
 #Para ejecutarlo requiere de Python, y ejecutarlo desde la terminal posisionandose en
 #el directorio donde se encuentre guardado el archivo y
-#posteriormente ejecutarlo de la sig manera ----> python monitorSystem.py
+#posteriormente ejecutarlo de la sig manera ----> python monitorSystemUL.py
 #Funciona correctamente en sistemas UNIX/LINUX
 
 import threading
