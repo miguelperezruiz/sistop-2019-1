@@ -22,3 +22,28 @@ def CPU_info():
 		lectura = file.readline()
 	file.close()
 	semaforo.release()
+<<<<<<< HEAD
+=======
+#desplegando informacion de la memoria de la Computadora anfitriona
+def memory_info():
+	global semaforo
+	semaforo.acquire()	
+	file = open("/proc/meminfo")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+#desplegando informacion del tiempo de uso del cpu
+def use_time():
+	global semaforo
+	semaforo.acquire()	
+	file = open("/proc/uptime")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+>>>>>>> 2
