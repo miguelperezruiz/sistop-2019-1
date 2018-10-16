@@ -23,7 +23,10 @@ def CPU_info():
 	file.close()
 	semaforo.release()
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3
 #desplegando informacion de la memoria de la Computadora anfitriona
 def memory_info():
 	global semaforo
@@ -46,4 +49,29 @@ def use_time():
 		lectura = file.readline()
 	file.close()
 	semaforo.release()
+<<<<<<< HEAD
 >>>>>>> 2
+=======
+#desplegando informcaion del uso de CPU
+def use_CPU():
+	global semaforo
+	semaforo.acquire()	
+	file = open("/proc/loadavg")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+#desplegando informacion de las particiones de Disco
+def disk_part():
+	global semaforo
+	semaforo.acquire()	
+	file = open("/proc/mounts")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+>>>>>>> 3
