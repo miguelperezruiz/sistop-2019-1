@@ -24,9 +24,12 @@ def CPU_info():
 	semaforo.release()
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 3
+=======
+>>>>>>> 4
 #desplegando informacion de la memoria de la Computadora anfitriona
 def memory_info():
 	global semaforo
@@ -50,8 +53,11 @@ def use_time():
 	file.close()
 	semaforo.release()
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2
 =======
+=======
+>>>>>>> 4
 #desplegando informcaion del uso de CPU
 def use_CPU():
 	global semaforo
@@ -74,4 +80,53 @@ def disk_part():
 		lectura = file.readline()
 	file.close()
 	semaforo.release()
+<<<<<<< HEAD
 >>>>>>> 3
+=======
+#desplegando informacion de los ultimos procesos ejecutados
+def process_act():
+	global semaforo
+	semaforo.acquire()
+	os.system("ps -l"); #mostramos los mas recientes en formato largo
+	semaforo.release();
+#desplegando informacion del uso de memoria
+def mem_st():
+	global semaforo
+	semaforo.acquire()
+	os.system("free -h"); #mostramos espacio en memoria en formato Humano :V
+						  #eso quiere decir: escalado para que sea entendible
+	semaforo.release();
+#desplegando informacion sobre los sistemas de archivos soportados por el OS
+def fileSys_info():
+	global semaforo
+	semaforo.acquire()	
+	file = open("/proc/filesystems")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+#desplegando informacion de ayuda para el manejo del monitor
+def info():
+	global semaforo
+	semaforo.acquire()	
+	file = open("info.txt")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+#desplegando informacion sobre los desarrolladores
+def acerca_de():
+	global semaforo
+	semaforo.acquire()	
+	file = open("proyecto.txt")
+	lectura = file.readline()
+	while lectura != "":
+		print lectura
+		lectura = file.readline()
+	file.close()
+	semaforo.release()
+>>>>>>> 4
