@@ -61,7 +61,10 @@ def uso_memoria():
 		print (now.strftime("Date: %Y-%m-%d %H:%M:%S"))
 		os.system("free -h")
 		print "____________________________________________________________________________"
-		os.system("cat /proc/meminfo")
+		#os.system("cat /proc/meminfo")
+		a = open("/proc/meminfo","r")
+		for l in a.readline():
+			print a.readline()
 		print("\033[1;30;47m"+"COMANDOS: memoria(m) | procesos(p) | disco(d) | logins (l) | cpuinfo(c) | interrupts (i) | help(h) | clear (q) | exit(x)"+'\033[0;m')
 		mut_impr.release()
 		sleep(2)
