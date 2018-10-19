@@ -1,1 +1,1 @@
-Proyecto Monitor de Sistemas
+Proyecto Monitor de Sistema
