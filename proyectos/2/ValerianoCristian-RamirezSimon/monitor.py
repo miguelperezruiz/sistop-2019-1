@@ -1,115 +1,124 @@
 #!/usr/bin/python
 # coding=utf-8
 
-'''Editor de estilo:'''
-#\033[cod_formato;cod_color_texto;cod_color_fondom
+
+#Plantilla de estilo del menú: \033[cod_formato;cod_color_texto;cod_color_fondom
 
 from threading import Semaphore, Thread
 from time import sleep
 import os, threading, time, datetime
 
 
-mut_impr = threading.Semaphore(1)
-band = 0
-i=0
-j=0
+mut_impr = threading.Semaphore(1)	#MUTEX QUE SOLICITAN LOS PROCESOS PARA IMPRIMIR EN PANTALLA
+band = 0				#VARIABLE DE CONDICIÓN PARA MANTENER EJECUTANDO EL MONITOR
+i=0					#VARIABLE DE CONDICIÓN PARA EL CICLO DE MEMORIA DEL HILO DE MEMORIA
+j=0					#VARIABLE DE CONDICIÓN PARA EL CICLO DEL HILO DE PROCESOS
 
-# Definimos la funcion que nos dará a información del uso 
-# de disco duro.
+# MENU DEL PROGRAMA
+def menu():
+	print("\033[1;30;47m"+"COMANDOS: memoria(m) | procesos(p) | disco(d) | logins (l) | cpuinfo(c) | interrupts (i) | help(h) | clear(q) | exit(x)"+'\033[0;m')
+
+# FUNCIÓN QUE MUESTRA EL USO DE DISCO
 def uso_disco():
-	'''Impresión de uso de disco'''
 	global mut_impr,i,j
-	i=1
-	j=1
-	mut_impr.acquire()
+	i=1			#TERMINA EL BUCLE DEL HILO DE MEMORIA
+	j=1			#TERMINA EL BUCLE DEL HILO DE MEMORIA
+	mut_impr.acquire()	#ADQUIERE EL MUTEX
 	print("\033[1;37;42m"+"                                        USO DE DISCO                                        "+'\033[0;m\n')
 	print " "
 	os.system("du -h")
-	mut_impr.release()
+	mut_impr.release()	#LIBERA EL MUTEX
 
-#Definimos la funcion que imprime el uso de los procesos
+#FUNCIÓN QUE MUESTRA LOS PROCESOS ACTIVOS
 def procesos():
-	'''Impresión de Procesos'''
 	global mut_impr,i,j
-	i=1
-
-	mut_impr.acquire()
-	j=0
-	while j==0:
-		print("\033[1;37;42m"+"                                        PROCESOS                                       "+'\033[0;m\n')
-		print " "
-		os.system("ps -auf")
-		print("\033[1;30;47m"+"COMANDOS: memoria(m) | procesos(p) | disco(d) | logins (l) | cpuinfo(c) | interrupts (i) | help(h) | clear (q) | exit(x)"+'\033[0;m')
-		mut_impr.release()
-		sleep(2)
-
-#Definimos la funcion que imprime el uso de memoria.
-
-def uso_memoria():
-	'''Impresión de Uso de Memoria'''
-	global mut_impr,i,j
-	j=1
-	mut_impr.acquire()
-	i=0
-	while i == 0:
-
-		print("\033[1;37;42m"+"                                        MEMORIA                                        "+'\033[0;m\n')
-
+	i=1			#FORZA LA DETENCIÓN DEL BUCLE DEL HILO DE MEMORIA
+	mut_impr.acquire()	#-----------ADQUIERE EL MUTEX
+	j=0			#SE ASEGURA DE REINICIAR LA VARIABLE PARA INICIAR EL BUCLE
+	while j==0:		#INICIA EL BUCLE PARA ACTUALIZAR LA INFORMACIÓN
 		os.system("clear")
-		now = datetime.datetime.now()
+		print("\033[1;37;42m"+"                                        PROCESOS                                       "+'\033[0;m\n')
+		now = datetime.datetime.now()				
+		print (now.strftime("Date: %Y-%m-%d %H:%M:%S\n"))	#IMPRIME LA FECHA Y HORA ACTUAL
+		os.system("ps -auf")
+		menu()
+		mut_impr.release()	#----------LIBERA EL MUTEX ANTES DEL SIGUIENTE CICLO
+		sleep(0.2)		#DUERME 0.2 SEGUNDOS PARA QUE DE TIEMPO DE QUE OTRO HILO TOME EL MUTEX
 
-		print (now.strftime("Date: %Y-%m-%d %H:%M:%S"))
+
+#FUNCIÓN QUE MUESTRA EL USO DE MEMORIA
+def uso_memoria():
+	global mut_impr,i,j
+	j=1			#FORZA LA DETENCIÓN DEL BUCLE DEL HILO DE PROCESOS
+	mut_impr.acquire()	#-----------ADQUIERE EL MUTEX
+	i=0			#SE ASEGURA DE REINICIAR LA VARIABLE PARA INICIAR EL BUCLE
+	while i == 0:		#INICIA EL BUCLE PARA ACTUALIZAR LA INFORMACIÓN
+		os.system("clear")
+		print("\033[1;37;42m"+"                                        MEMORIA                                        "+'\033[0;m\n')
+		now = datetime.datetime.now()
+		print (now.strftime("Date: %Y-%m-%d %H:%M:%S\n"))	#IMPRIME LA FECHA Y HORA ACTUAL
 		os.system("free -h")
 		print "____________________________________________________________________________"
-		#os.system("cat /proc/meminfo")
 		a = open("/proc/meminfo","r")
-		for l in a.readline():
+		for l in a.readline()
 			print a.readline()
-		print("\033[1;30;47m"+"COMANDOS: memoria(m) | procesos(p) | disco(d) | logins (l) | cpuinfo(c) | interrupts (i) | help(h) | clear (q) | exit(x)"+'\033[0;m')
-		mut_impr.release()
-		sleep(2)
-	mut_impr.release()		
+		menu()
+		mut_impr.release()	#----------LIBERA EL MUTEX ANTES DEL SIGUIENTE CICLO
+		sleep(0.2)		#DUERME 0.2 SEGUNDOS PARA QUE DE TIEMPO DE QUE OTRO HILO TOME EL MUTEX
+	mut_impr.release()
+		
+#FUNCIÓN QUE MUESTRA LOS LOGINS EN EL SISTEMA OPERATIVO	
 def logins():
-	'''Imprimir Logins'''
+	
 	global mut_impr,i,j
-	i=1
+	i=1	#SE FORZA LA DETENCIÓN DE LOS BUCLES 
 	j=1
-	mut_impr.acquire()
+	mut_impr.acquire()	#----------ADQUIERE EL MUTEX
 	print("\033[1;37;42m"+"                                        LOGINS                                       "+'\033[0;m\n')
 	print " "
 	os.system("last")
 
+#FUNCIÓN QUE MUESTRA LA INFORMACIÓN RELACIONADA AL CPU
 def cpu_info():
-	'''Informacion de CPU'''
-	global mut_impr,i,j
-	i=1
-	j=1
-	mut_impr.acquire()
-	print("\033[1;37;42m"+"                                        CPU INFO                                        "+'\033[0;m\n')
-	print " "
-	os.system("cat /proc/uptime")
-	os.system("cat /proc/cpuinfo")
 
-def interrupciones():
-	'''Impresion de Interrupciones de CPU'''
 	global mut_impr,i,j
-	i=1
+	i=1	#SE FORZA LA DETENCIÓN DE LOS BUCLES 
 	j=1
-	mut_impr.acquire()
+	mut_impr.acquire()	#----------ADQUIERE EL MUTEX
+	print("\033[1;37;42m"+"                                        CPU INFO                                        "+'\033[0;m\n')
+	print "Tiempo en funcionamiento:"
+	a = open("/proc/uptime","r")
+		for l in a.readline()
+			print a.readline()
+	b = open("/proc/cpuinfo","r")
+		for l in b.readline()
+			print b.readline()
+
+#FUNCIÓN QUE MUESTRA LAS INTERRUPCIONES DEL SISTEMA
+def interrupciones():
+
+	global mut_impr,i,j
+	i=1	#FORZA LA DETENCIÓN DE LOS BUCLES
+	j=1
+	mut_impr.acquire()	#----------ADQUIERE EL MUTEX
 	print("\033[1;37;42m"+"                                        INTERRUPCIONES                                        "+'\033[0;m\n')
 	print " "
-	os.system("cat /proc/interrupts")
+	a = open("/proc/interrupts","r")
+		for l in a.readline()
+			print a.readline()
 
+#FUNCIÓN PARA LIMPIAR LA PANTALLA
 def limpia_pantalla():
 	'''Limpiar Pantalla'''
 	global mut_impr,i,j
-	i=1
+	i=1	#FORZA LA DETENCIÓN DE LOS BUCLES
 	j=1
-	mut_impr.acquire()
+	mut_impr.acquire()	#---------ADQUIERE EL MUTEX
 	os.system("clear")
 
-####Función que crea y lanza los hilos cuando son llamados
-
+#FUNCIÓN QUE LANZA LOS HILOS CONFORME SON SOLICITADOS EN EL SHELL
+'''CUANDO EL USUARIO LLAMA A UN HILO, INMEDIATAMENTE LIBERA EL MUTEX
+PARA QUE PUEDA ADQUIRIRLO EL HILO EN CUESTIÓN'''
 def command(var):
 	'''Lanzador de Hilos'''
 	global band
@@ -152,24 +161,21 @@ def command(var):
 		j=1
 		mut_impr.release()
 
-		band = 1
+		band = 1	#FINALIZA EL MONITOR
 	else:
 		print "Invalid command..."
 	
 
-
+#MAIN DEL MONITOR
 def shell():
 	'''Funciones en Shell'''
 	global var, band, mut_impr
 	os.system("clear")
 	while band == 0:
-#		mut_impr.acquire()
-		print("\033[1;30;47m"+"COMANDOS: memoria(m) | procesos(p) | disco(d) | logins (l) | cpuinfo(c) | interrupts (i) | help(h) | clear(q) | exit(x)"+'\033[0;m')
+
+		menu()
 		var = raw_input("user@machine$ ")
 		command(var)
 		sleep(0.5)
-#		mut_impr.release()
-				
-
 
 shell()
