@@ -15,7 +15,7 @@ el que ustedes me planteen los temas de su interés.
 | Fecha  | Tema                                    | Integrantes                        | Documentos                            | Evaluación |
 |--------+-----------------------------------------+------------------------------------+---------------------------------------+------------|
 | 23/oct | Criptografía: Hashes                    | Simón Ramírez                      | [[./HernandezAlejandro-RamirezSimon/Hash.pdf][Presentación (PDF)]], [[HernandezAlejandro-RamirezSimon/Hash.txt][Documento (texto)]] | [[./HernandezAlejandro-RamirezSimon/evaluacion.org][Evaluación]] |
-| 25/oct | Blockchain                              | Guadalupe Moreno y Aníbal Medina   | [[./MorenoGuadalupe/SO_Expocicion.pptx][Presentación (PPTX)]]                   |            |
+| 25/oct | Blockchain                              | Guadalupe Moreno y Aníbal Medina   | [[./MorenoGuadalupe-MedinaAnibal/SO_Expocicion.pptx][Presentación (PPTX)]]                   | [[./MorenoGuadalupe-MedinaAnibal/evaluacion.org][Evaluación]] |
 | 6/nov  | SPECTRE y Meltdown                      | Alberto Espinosa y Alejandro Pérez |                                       |            |
 | 8/nov  | Rust                                    | Yesenia Velasco y Luis Moreno      |                                       |            |
 | 13/nov | Coherencia de caché                     | Edgar Facundo y Emma Fuentes       |                                       |            |
