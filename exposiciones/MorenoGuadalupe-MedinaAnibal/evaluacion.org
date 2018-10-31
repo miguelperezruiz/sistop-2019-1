@@ -1,7 +1,7 @@
 #+title: Evaluación de exposición: Hashes
 #+author: Gunnar Wolf
 
-- Tema presentado por: Alejandro Hernández, Simón Ramírez
+- Tema presentado por: Guadalupe Moreno y Aníbal Medina
 - Calificación global: (7.79 × 0.3) + (6.625 × 0.7) = *6.98*
 
 * Evaluación grupal
