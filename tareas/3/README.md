@@ -57,6 +57,16 @@ La entrega puede hacerse de forma individual o en equipos de dos
 personas. Utilicen la ya habitual nomenclatura y ubicación estándar
 para todas sus entregas mediante Git.
 
+Como siempre, les recomiendo crear una rama a partir de mi última
+versión del árbol antes de comenzar a trabajar:
+
+    $ git checkout master
+	$ git pull gwolf master
+	$ git branch tarea3
+	$ git checkout tarea3
+
+Y, cuando hagan su _pull request_, háganlo a partir de `tarea3`.
+
 ## Calificaciones y comentarios
 
 Estarán disponibles aquí una vez sea calificado.
