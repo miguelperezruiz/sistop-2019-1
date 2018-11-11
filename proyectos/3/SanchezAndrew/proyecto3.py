@@ -10,8 +10,15 @@ def brr(cmd):
 	print("Debe borrar el archivo")
 def lsdoc(cmd):
 	print("Debe mostrar el directorio de archivos")
+
+
 def crr(cmd):
-	print("Debe crear el archivo")
+    nombre = cmd[1]
+    f= open(str(nombre)+'.txt','w')
+    f.write(cmd[2])
+    f.close()
+
+
 def agg(cmd):
 	print("Debe agregar informacion al archivo")
 def ayuda(cmd):
