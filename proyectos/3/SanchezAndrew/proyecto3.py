@@ -5,49 +5,61 @@
 import os
 global nombre
 
-
+# Esta funcion muestra el contenido de un archivo (lectura)
 def mst(cmd):
 	nombre = cmd[1]
 	f = open(str(nombre)+'.txt','r')
 	print(f.read())
 	f.close()
 
-def brr(cmd):
-	os.remove(str(cmd[1])+'.txt')
-
-def lsdoc(cmd):
-	print("Debe mostrar el directorio de archivos")
-
-
+# Esta funcion crear un archivo y puede escribir en el mismo (crea y puede escribir)
 def crr(cmd):
 	nombre = cmd[1]
 	f= open(str(nombre)+'.txt','w')
-	f.write(cmd[2])
-	f.close()
+	try:	
+		f.write(cmd[2])
+		f.close()
+	except IndexError:
+		f.close()
 
-
+# Esta funcion agraga informacion al archivo (escribe)
 def agg(cmd):
 	nombre = cmd[1]
 	f = open(str(nombre)+'.txt','a')
-	f.write(' '+cmd[2])
-	f.close()
+	try:	
+		f.write(cmd[2])
+		f.close()
+	except IndexError:
+		print("No tiene informacion para agregar")
+		f.close()
 
+
+# Esta funcion borra un archivo (eliminar)
+def brr(cmd):
+	os.remove(str(cmd[1])+'.txt')
+
+# Esta funcion lista el directorio actual
+def lsdoc(cmd):
+	os.system('dir -B')
+
+# Esta funcion solo imprime en la terminal la ayuda para los comandos a usar
 def ayuda(cmd):
-	print("AYUDA!!")
-
-def main():
-	print("\n\t Bienvenido (Micro) sistema de archivos BlaiseSe.")
-	print("\t -- Escriba ayuda para ayuda ")
 	print("\t -- Escriba lsdoc para mostrar los archivos en el directorio ")
-	print("\t -- Escriba brr para borrar ")
-	print("\t -- Escriba mst para mostrar el contenido de un archivo ")
-	print("\t -- Escriba crr para crear un archivo ")
-	print("\t -- Escriba agg para agregar informacion a un archivo ya creado ")
-	print("\t -- Escriba yapara para cerrar el (micro) Sistema de Archivos ")
+	print("\t -- Escriba brr nombreArchivo para borrar ")
+	print("\t -- Escriba crr nombreArchivo Contenido para crear un archivo ")
+	print("\t -- Escriba mst nombreArchivo para mostrar el contenido de un archivo ")
+	print("\t -- Escriba agg nombreArchivo TextoParaAgregar") 
+	print("\t       para agregar informacion a un archivo ya creado ")
+	print("\t -- Escriba yabasta para cerrar el (micro) Sistema de Archivos ")
+
+# Funcion principal para el manejo del programa Micro Sistema de Archivos BlaiseSe (MSAB) 
+def MSAB():
+	print("\n\t Bienvenido al (micro) Sistema de Archivos BlaiseSe.")
+	print("\t -- Escriba ayuda para ayuda ")
 
 	cmd =raw_input("~$:  ").split(" ")
 	lscmd={"lsdoc":lsdoc,"brr":brr,"mst":mst,"ayuda":ayuda,"crr":crr,"agg":agg}
-	while cmd[0] != "yapara":
+	while cmd[0] != "yabasta":
 		try:
 			func=lscmd[cmd[0]]
 			if len(cmd)>3:	
@@ -60,4 +72,4 @@ def main():
 			print("error 404 -.-' ")
 		cmd=raw_input("~$: ").split(" ")
 
-main()
+MSAB()
