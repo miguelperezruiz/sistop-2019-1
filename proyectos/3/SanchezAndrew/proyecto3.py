@@ -3,24 +3,32 @@
 #Proyecto 3 (micro) Sistema de Archivos.
 
 import os
+global nombre
+
 
 def mst(cmd):
-	print("Debe mostrar el archivo")
+	print("Debe mostrar el contenido de un archivo")
+
 def brr(cmd):
 	print("Debe borrar el archivo")
+
 def lsdoc(cmd):
 	print("Debe mostrar el directorio de archivos")
 
 
 def crr(cmd):
-    nombre = cmd[1]
-    f= open(str(nombre)+'.txt','w')
-    f.write(cmd[2])
-    f.close()
+	nombre = cmd[1]
+	f= open(str(nombre)+'.txt','w')
+	f.write(cmd[2])
+	f.close()
 
 
 def agg(cmd):
-	print("Debe agregar informacion al archivo")
+	nombre = cmd[1]
+	f = open(str(nombre)+'.txt','a')
+	f.write(' '+cmd[2])
+	f.close()
+
 def ayuda(cmd):
 	print("AYUDA!!")
 
