@@ -18,7 +18,7 @@ Esto se puede ver con el comanod ayuda en el mismo (micro) Sistema de Archivos
 
 	-- Escriba mst nombreArchivo para mostrar el contenido de un archivo 
 
-	-- Escriba agg nombreArchivo TextoParaAgregar para agregar informacion a un archivo ya creado 
+	-- Escriba agg nombreArchivo TextoParaAgregar para agregar informacion a un archivo sino existe lo crea
 
 	-- Escriba yabasta para cerrar el (micro) Sistema de Archivos
 

@@ -8,9 +8,12 @@ global nombre
 # Esta funcion muestra el contenido de un archivo (lectura)
 def mst(cmd):
 	nombre = cmd[1]
-	f = open(str(nombre)+'.txt','r')
-	print(f.read())
-	f.close()
+	try:
+		f = open(str(nombre)+'.txt','r')
+		print(f.read())
+		f.close()
+	except IOError:
+		print("El archivo no existe")
 
 # Esta funcion crear un archivo y puede escribir en el mismo (crea y puede escribir)
 def crr(cmd):
@@ -22,7 +25,7 @@ def crr(cmd):
 	except IndexError:
 		f.close()
 
-# Esta funcion agraga informacion al archivo (escribe)
+# Esta funcion agraga informacion al archivo (escribe sino existe se crea)
 def agg(cmd):
 	nombre = cmd[1]
 	f = open(str(nombre)+'.txt','a')
@@ -36,7 +39,10 @@ def agg(cmd):
 
 # Esta funcion borra un archivo (eliminar)
 def brr(cmd):
-	os.remove(str(cmd[1])+'.txt')
+	try:
+		os.remove(str(cmd[1])+'.txt')
+	except OSError:
+		print("El archivo no existe")
 
 # Esta funcion lista el directorio actual
 def lsdoc(cmd):
