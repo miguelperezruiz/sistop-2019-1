@@ -13,7 +13,7 @@ def mst(cmd):
 	f.close()
 
 def brr(cmd):
-	print("Debe borrar el archivo")
+	os.remove(str(cmd[1])+'.txt')
 
 def lsdoc(cmd):
 	print("Debe mostrar el directorio de archivos")
