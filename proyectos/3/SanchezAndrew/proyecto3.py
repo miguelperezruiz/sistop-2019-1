@@ -7,7 +7,10 @@ global nombre
 
 
 def mst(cmd):
-	print("Debe mostrar el contenido de un archivo")
+	nombre = cmd[1]
+	f = open(str(nombre)+'.txt','r')
+	print(f.read())
+	f.close()
 
 def brr(cmd):
 	print("Debe borrar el archivo")
