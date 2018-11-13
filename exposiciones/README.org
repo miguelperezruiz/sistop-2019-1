@@ -23,3 +23,5 @@ el que ustedes me planteen los temas de su interés.
 | 20/nov | Desduplicación                          | Paola Lara y Ángel Aguilar          |                                       |            |
 |--------+-----------------------------------------+-------------------------------------+---------------------------------------+------------|
 
+Los alumnos que no hayan alcanzado fecha para exposición pueden
+entregar el [[./remedial/README.org][trabajo remedial]].
