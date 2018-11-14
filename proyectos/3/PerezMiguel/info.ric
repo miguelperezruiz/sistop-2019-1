@@ -10,7 +10,7 @@
 	utilizando Bibliotecas ANSI C
 	2 archivos de cabecera para desarrollo de comandos
 		-ficheros.h 	comandos para ficheros
-		-other.h 		comandos de info/ayuda
+		-other.h 		comandos de  info/ayuda
 	1 archivo.c
 		-main.c 		muestra shell 'MySis'
 
