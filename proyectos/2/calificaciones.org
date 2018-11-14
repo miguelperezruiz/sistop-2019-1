@@ -329,8 +329,9 @@ El planteamiento del proyecto y la rúbrica para su calificación están
     versión que me enviaron no es funcional ☹ Tuve que hacer un poco
     de /arqueología digital/ para lograr que el programa arrancara...
     - Tienen por lo menos dos diferentes sistemas de nombres para las
-      funciones y variables utilizadas. En rojo, el código de
-      ustedes. En verde, mis correcciones:
+      funciones y variables utilizadas. Las líneas que inician con
+      '-', el código de ustedes. Las que inician con '+', mis
+      correcciones:
       #+BEGIN_SRC diff
 
 	index a1a67c4..5a8594d 100644
