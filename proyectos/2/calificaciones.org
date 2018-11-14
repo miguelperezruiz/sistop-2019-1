@@ -319,40 +319,125 @@ El planteamiento del proyecto y la rúbrica para su calificación están
 - Documentación :: [[./MedinaAnibal-MorenoGuadalupe/Documentacion.txt]]
 - Código :: [[./MedinaAnibal-MorenoGuadalupe/Monitor.py]]
 - Lenguaje de desarrollo :: Python
-- Estado :: Entregado a tiempo, pero no en la versión
-            correcta. ¡Esperando al pull request correcto!
-# - Interfaz ::
-# - Aspecto monitoreado ::
-# - Uso de multitarea / sincronización ::
-# - Observaciones ::
+- Interfaz :: Ventana de texto sobre una interfaz GUI Tkinter
+- Aspecto monitoreado :: Características del equipo, memoria, CPU y
+     lista de procesos
+- Uso de multitarea / sincronización ::
+- Observaciones ::
+  - ¡Se ve que le invirtieron bastante trabajo al proyecto! ¡Bien!
+  - Por lo visto, el código se les /batió/ al unir versiones - Y la
+    versión que me enviaron no es funcional ☹ Tuve que hacer un poco
+    de /arqueología digital/ para lograr que el programa arrancara...
+    - Tienen por lo menos dos diferentes sistemas de nombres para las
+      funciones y variables utilizadas. En rojo, el código de
+      ustedes. En verde, mis correcciones:
+      #+BEGIN_SRC diff
 
-# | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
-# |------------------------+-----------+--------+----------|
-# | *Requisitos*           |           |    0.2 |          |
-# | Cumplimiento           |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Proyecto*             |           |    0.2 |          |
-# | Creatividad            |           |        |          |
-# | Complejidad            |           |        |          |
-# | Interfaz usuario       |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Documentación*        |           |    0.2 |          |
-# | Doc. externa           |           |        |          |
-# | Entorno y dependencias |           |        |          |
-# | Comentarios            |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Entrega*              |           |    0.2 |          |
-# | Historia en Git        |           |        |          |
-# | Dir. de proyecto       |           |        |          |
-# | Código válido          |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Concurrencia*         |           |    0.2 |          |
-# | Multiproceso           |           |        |          |
-# | Sincronización         |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *TOTAL*                |           |        |          |
-# |------------------------+-----------+--------+----------|
-# #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+	index a1a67c4..5a8594d 100644
+	--- a/proyectos/2/MedinaAnibal-MorenoGuadalupe/Monitor.py
+	+++ b/proyectos/2/MedinaAnibal-MorenoGuadalupe/Monitor.py
+	@@ -9,7 +9,7 @@ import threading
+	 import psutil
+ 
+	 # Numero de nucleos que tiene nuestra computadora
+	-NumNucleos = int(subprocess.getoutput("grep processor /proc/cpuinfo | wc -l"))
+	+numNucleos = int(subprocess.getoutput("grep processor /proc/cpuinfo | wc -l"))
+ 
+	 # Mutex para proteger al contador
+	 mutex = threading.Semaphore(1)
+	@@ -68,7 +68,7 @@ def Sistema():
+	     estado1 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5; do echo $c4; done")
+	     time.sleep(1)
+	     estado2 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5; do echo $c4; done")
+	-    cpu_uso = (int(estado2) - int(estado1)) / NumNucleos
+	+    cpu_uso = (int(estado2) - int(estado1)) / numNucleos
+	     alertProces()
+	     return str(cpu_uso)
+ 
+	@@ -77,7 +77,7 @@ def cpuInactivo():
+	     estado1 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
+	     time.sleep(1)
+	     estado2 = subprocess.getoutput("cat /proc/stat | grep 'cpu ' | while read c1 c2 c3 c4 c5 c6; do echo $c5; done")
+	-    cpu_uso = (int(estado2) - int(estado1)) / NumNucleos
+	+    cpu_uso = (int(estado2) - int(estado1)) / numNucleos
+	     alertProces()
+	     return str(cpu_uso)
+ 
+	@@ -98,7 +98,7 @@ def MemoLibre():
+	 # memoria que está usando el usuario(se muestra en kB)
+	 def MemoUso():
+	     memuso =  subprocess.getoutput("cat /proc/meminfo | while read c1 c2; do echo $c2; done | sed -n '7 p'")
+	-    alertProcess()
+	+    alertProces()
+	     return memuso
+ 
+	 # memoria de intercambio total que tiene nuestra computadora(se muestra en kB)
+	@@ -202,7 +202,7 @@ def listProces():
+ 
+ 
+ 
+	-funcionesALanzar = [cpuUsuario, cpuSistema,cpuInactivo, memTotal,memLibre,memUso,memSwapTotal,memSwapLibre,memSwapUso,numProcesos,numProcEjecucion,tFuncionamiento,tInactivo,listaProc]
+	+funcionesALanzar = [Usuario, Sistema,cpuInactivo, MemoTotal,MemoLibre,MemoUso,MemoSwapTotal,MemoSwapLibre,MemoSwapUso,NumProcesos,NumProcEjecucion,tFuncionamiento,tInactivo,listProces]
+	 func_monitor = len(funcionesALanzar)
+ 
+	 # lanzar los hilos
+	@@ -268,7 +268,7 @@ def interfaz():
+ 
+ 
+	 def main():
+	-       global conthilos
+	+       global contahilos
+		while True:
+			iniciaHilos()
+			# Espera a que todos los hilos terminen
+      #+END_SRC
+  - La parametrización / construcción interna de la lista de
+    =funcionesALanzar=, utilizada en =iniciaHilos()=, es una buena
+    práctica que permite /desacoplar/ la lógica del
+    funcionamiento. ¡Bien hecho!
+  - Todas las mediciones se ejecutan /dos/ veces por ciclo: Una vez,
+    invocadas desde =iniciaHilos()= y la otra, de forma secuencial,
+    desde =interfaz()=.  Esto es, la porción que aprovecha la
+    ejecución paralela... Se desecha y se usa únicamente de forma
+    secuencial ☹
+    - Podrían haber hecho que cada función actualizara sus datos
+      dentro de un arreglo global, y podrían mantenerse ejecutando
+      todos de forma simultánea. =alertProces()=, llamado al inicio de
+      la ejecución de cada una, obtiene y libera un mutex, pero
+      únicamente para contar la cantidad de hilos.
+  - El código incluye tres =time.sleep(1)=. Esto significa que, dado
+    que el código completo se ejecuta (/¡secuencialmente!/) dos veces,
+    la ventana con los resultados tarda /seis segundos/ en aparecer o
+    en actualizarse. Si se omiten estos =time.sleep(1)=, ¡la
+    usabilidad del programa resultado aumenta mucho!
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |     2.01 |
+| Creatividad            |        10 |        |     0.67 |
+| Complejidad            |        10 |        |     0.67 |
+| Interfaz usuario       |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |     2.01 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |     1.67 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |         5 |        |     0.33 |
+|------------------------+-----------+--------+----------|
+| *Concurrencia*         |           |    0.2 |     1.08 |
+| Multiproceso           |       7.5 |        |     0.75 |
+| Sincronización         |         5 |        |     0.33 |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |     8.27 |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
 * Luis Moreno y Ángel Ramírez
 - Documentación :: [[./MorenoLuis-RamirezAngel/ReporteMonitorWindowsLA.pdf]]
