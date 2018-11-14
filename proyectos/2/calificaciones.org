@@ -322,7 +322,9 @@ El planteamiento del proyecto y la rúbrica para su calificación están
 - Interfaz :: Ventana de texto sobre una interfaz GUI Tkinter
 - Aspecto monitoreado :: Características del equipo, memoria, CPU y
      lista de procesos
-- Uso de multitarea / sincronización ::
+- Uso de multitarea / sincronización :: Se definen varios mutexes,
+     pero de forma efectiva, sólo se emplea uno a modo de mutex en
+     =alertProces()=. Los hilos corren de forma estrictamente secuencial.
 - Observaciones ::
   - ¡Se ve que le invirtieron bastante trabajo al proyecto! ¡Bien!
   - Por lo visto, el código se les /batió/ al unir versiones - Y la
@@ -499,40 +501,53 @@ El planteamiento del proyecto y la rúbrica para su calificación están
 - Documentación :: [[./PerezMiguel/Documentacion]]
 - Código :: [[./PerezMiguel/Monitor.py]]
 - Lenguaje de desarrollo :: Python
-- Estado :: Entregado a tiempo, pero no en la versión
-            correcta. ¡Esperando al pull request correcto!
-# - Interfaz ::
-# - Aspecto monitoreado ::
-# - Uso de multitarea / sincronización ::
-# - Observaciones ::
+- Interfaz :: Curses (consola, pero con acomodo semi-gráfico)
+- Aspecto monitoreado :: Uso de CPU, memoria, número de núcleos,
+     principales procesos
+- Uso de multitarea / sincronización ::
+  - Barrera a la /salida/ de las funciones recolectores de datos
+  - mutex para la modificación de contadores
+- Observaciones ::
+  - ¡Bonita implementación!
+  - Me faltó un poco de documentación / comentarios para entender el
+    flujo de ejecución / intercambio de datos
+  - Muy buen uso de los módulos de Python para obtener información del
+    sistema (en vez de obtenerlos de lugares específicos a Linux o
+    cuestiones por el estilo)
+  - Respecto a la documentación, te sugiero trabajar un poco en lograr
+    una redacción más clara. ¡No por buscar escribir algo en tono
+    formal / apersonal debe resultar de difícil lectura!
+  - Para poderlo ejecutar en un entorno como el que documentas, tuve
+    que modificar el nombre de la variable =tamañio= por =tamanio=
+    (restricciones de Python 2.x)
 
-# | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
-# |------------------------+-----------+--------+----------|
-# | *Requisitos*           |           |    0.2 |          |
-# | Cumplimiento           |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Proyecto*             |           |    0.2 |          |
-# | Creatividad            |           |        |          |
-# | Complejidad            |           |        |          |
-# | Interfaz usuario       |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Documentación*        |           |    0.2 |          |
-# | Doc. externa           |           |        |          |
-# | Entorno y dependencias |           |        |          |
-# | Comentarios            |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Entrega*              |           |    0.2 |          |
-# | Historia en Git        |           |        |          |
-# | Dir. de proyecto       |           |        |          |
-# | Código válido          |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Concurrencia*         |           |    0.2 |          |
-# | Multiproceso           |           |        |          |
-# | Sincronización         |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *TOTAL*                |           |        |          |
-# |------------------------+-----------+--------+----------|
-# #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |       2. |
+| Cumplimiento           |        10 |        |     2.00 |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |     2.01 |
+| Creatividad            |        10 |        |     0.67 |
+| Complejidad            |        10 |        |     0.67 |
+| Interfaz usuario       |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |     1.67 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |         5 |        |     0.33 |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |     1.84 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |       7.5 |        |     0.50 |
+|------------------------+-----------+--------+----------|
+| *Concurrencia*         |           |    0.2 |     1.42 |
+| Multiproceso           |       7.5 |        |     0.75 |
+| Sincronización         |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |     8.94 |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
 
 * Andrew Sánchez
 - Documentación :: [[./SanchezAndrew/Documentacion]]
