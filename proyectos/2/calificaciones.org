@@ -553,45 +553,106 @@ El planteamiento del proyecto y la rúbrica para su calificación están
 - Documentación :: [[./SanchezAndrew/Documentacion]]
 - Código :: [[./SanchezAndrew/MonitorSistema.py]]
 - Lenguaje de desarrollo :: Python
-- Estado :: Entregado a tiempo, pero no en la versión
-            correcta. ¡Esperando al pull request correcto!
-# - Interfaz :: Texto (menú). Emplea wx, pero no genera una interfaz
-#               gráfica con él (?)
-# - Aspecto monitoreado :: Niveles de disco, memoria, procesos y CPU
-# - Uso de multitarea / sincronización :: La función =hilo()= crearía a
-#      cuatro hilos, uno por función, pero no es llamada. La función
-#      =Opciones()= genera a los hilos conforme son requeridos.
+- Interfaz :: Menú GUI (wx); resultados de la ejecución hacia consola
+- Aspecto monitoreado :: Niveles de disco, memoria, procesos y CPU
+- Uso de multitarea / sincronización :: La función =hilo()= crea a
+     cuatro hilos, uno por función, pero no es llamada. La función
+     =Opciones()= genera a los hilos conforme son requeridos.
 
-#      Las funciones iniciadas por cada uno de estos hilos declaran un
-#      mutex, y las funciones =cpu()=, =procesos()=, =memoria()= y
-#      =disco()= adquieren y liberan un mutex, pero no es necesario
-#      (porque viven a fin de cuentas dentro de una lógica secuencial).
-# - Observaciones ::
-#   - ¡Ortografía!
-# | *Rubro*                | *Parcial* | *Peso* | *Puntos* |
-# |------------------------+-----------+--------+----------|
-# | *Requisitos*           |           |    0.2 |          |
-# | Cumplimiento           |         5 |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Proyecto*             |           |    0.2 |          |
-# | Creatividad            |         5 |        |          |
-# | Complejidad            |         5 |        |          |
-# | Interfaz usuario       |         5 |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Documentación*        |           |    0.2 |          |
-# | Doc. externa           |           |        |          |
-# | Entorno y dependencias |           |        |          |
-# | Comentarios            |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Entrega*              |           |    0.2 |          |
-# | Historia en Git        |           |        |          |
-# | Dir. de proyecto       |           |        |          |
-# | Código válido          |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *Concurrencia*         |           |    0.2 |          |
-# | Multiproceso           |           |        |          |
-# | Sincronización         |           |        |          |
-# |------------------------+-----------+--------+----------|
-# | *TOTAL*                |           |        |          |
-# |------------------------+-----------+--------+----------|
-# #+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
+     Las funciones iniciadas por cada uno de estos hilos declaran un
+     mutex, y las funciones =cpu()=, =procesos()=, =memoria()= y
+     =disco()= adquieren y liberan un mutex, pero no es necesario
+     (porque viven a fin de cuentas dentro de una lógica secuencial).
+- Observaciones ::
+  - Tu código tiene un error de indentación (línea 147). Tuve que
+    corregirlo para que corra el programa. Afortunadamente la
+    resolución es obvia para humanos ;-)
+  - Presentas cinco =CheckBox= en una retícula, que aparecen en la
+    ventana "normal". Hay un sexto =CheckBox=, que aparece /fuera/ de
+    la ventana, y no tiene etiqueta. Lo recibe la función
+    =boolSelec()=. No alcanzo a encontrar dónde puede ser
+    utilizado. ¿Qué hace?
+  - Me parece muy correcto que separes la interfaz (clase =OpcionesM=)
+    de la acción propiamente dicha (el código bajo el espacio de
+    nombres principal del programa).
+  - Le invertiste tiempo a hacer un buen lanzador, pero simplemente
+    /avientas/ el resultado de varios comandos o archivos a pantalla,
+    de una forma que ni siquiera resulta fácil de seguir :-( Me
+    hubiera encantado que procesaras el resultado, o buscaras cómo
+    mostrar mejor cada resultado parcial.
+  - Ojo: Cada vez que llamas a un comando mediante =system()= se abre
+    un nuevo shell, y los cambios en el ambiente no se propagan. Esto
+    es, tu línea 145 (=os.system("cd")=) resulta inútil. Para lo que
+    intentas hacer en =Disk()= podrías cambiar de directorio desde
+    Python (=os.chdir()=), o dar un comando compuesto (=os.system('cd;
+    du')=).
+  - Tu código tiene varias /funciones muertas/. Por ejemplo, =hilo()=
+    es un lanzador de hilos, al igual que =Opciones()=... Y
+    =Opciones()= es llamado desde =MS()=, que... Nunca es
+    llamado. Me tardé en encontrar desde dónde llamas a =hilo()=,
+    estaba por calificarte más bajo por no emplear hilos.
+  - Tal vez sea un tecnicismo, pero a fin de cuentas es mi tarea
+    hacerlos: Dado que todas tus funciones "actuadoras" llaman a la
+    ejecución de procesos externos, resulta innecesario bloquear
+    mediante =mutex= entre las distintas ejecuciones. Esto es, los
+    diferentes comandos nunca se van a /pisar los callos/ porque tu
+    proceso completo (con todos sus hilos) se va a dormir cada vez que
+    invocas a un externo. Y dada la forma en que vas creando e
+    iniciando a tus hilos, la concurrencia queda muy limitada (por no
+    decir inexistente)
+  - Probablemente cumpliría /mejor/ los objetivos del proceso si
+    lanzaras =hilo()= sin condicionales desde un principio, sino que
+    mediante señalización. Si al iniciar creas un semáforo
+    (inicializado a 0) por cada una de las funciones:
+    #+BEGIN_SRC python
+      mostrar = {'Disco': threading.Semaphore(0),
+		 'Memoria': threading.Semaphore(0),
+		 # (...)
+      }
+    #+END_SRC
+    Y tus cinco funciones siguieran la forma:
+    #+BEGIN_SRC python
+      def Disk():
+	global mutex, mostrar
+	while True:
+	  mostrar['Disco'].acquire()
+	  mutex.acquire()
+	  # Haz tu chamba
+	  mutex.release()
+    #+END_SRC
+    La lógica de =hilo()= (o su reemplazo) podría ser sencillamente:
+    #+BEGIN_SRC python
+    def hilo(OpSelec):
+      global mostrar
+      for k in OpSelec.keys():
+        if opSelec[k] == True:
+          mostrar[k].release()
+    #+END_SRC
+
+| *Rubro*                | *Parcial* | *Peso* | *Puntos* |
+|------------------------+-----------+--------+----------|
+| *Requisitos*           |           |    0.2 |      1.5 |
+| Cumplimiento           |       7.5 |        |     1.50 |
+|------------------------+-----------+--------+----------|
+| *Proyecto*             |           |    0.2 |     1.33 |
+| Creatividad            |       7.5 |        |     0.50 |
+| Complejidad            |         5 |        |     0.33 |
+| Interfaz usuario       |       7.5 |        |     0.50 |
+|------------------------+-----------+--------+----------|
+| *Documentación*        |           |    0.2 |     2.01 |
+| Doc. externa           |        10 |        |     0.67 |
+| Entorno y dependencias |        10 |        |     0.67 |
+| Comentarios            |        10 |        |     0.67 |
+|------------------------+-----------+--------+----------|
+| *Entrega*              |           |    0.2 |     1.84 |
+| Historia en Git        |        10 |        |     0.67 |
+| Dir. de proyecto       |        10 |        |     0.67 |
+| Código válido          |       7.5 |        |     0.50 |
+|------------------------+-----------+--------+----------|
+| *Concurrencia*         |           |    0.2 |     1.33 |
+| Multiproceso           |        10 |        |     1.00 |
+| Sincronización         |         5 |        |     0.33 |
+|------------------------+-----------+--------+----------|
+| *TOTAL*                |           |        |     8.01 |
+|------------------------+-----------+--------+----------|
+#+TBLFM: @2$4=@3::@3$4=@3$2*@2$3 ; f-2::@4$4=@5+@6+@7::@5$4=$2*@4$3/3 ; f-2::@6$4=$2*@4$3/3 ; f-2::@7$4=$2*@4$3/3 ; f-2::@8$4=@9+@10+@11::@9$4=$2*@8$3/3 ; f-2::@10$4=$2*@8$3/3 ; f-2::@11$4=$2*@8$3/3 ; f-2::@12$4=@13+@14+@15::@13$4=$2*@12$3/3 ; f-2::@14$4=$2*@12$3/3 ; f-2::@15$4=$2*@12$3/3 ; f-2::@16$4=@17+@18::@17$4=$2*@16$3/2 ; f-2::@18$4=$2*@16$3/3 ; f-2::@19$4=@2+@4+@8+@12+@16
